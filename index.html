@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Getting Started with ml5.js</title>
-    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
-  </head>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+	<title>image_classification</title>
+
+	<!-- Do NOT update p5 libraries breaks the example because of p5.dom API change -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+	<script src="https://unpkg.com/ml5@0.1.3/dist/ml5.min.js"></script>
+	<script src="sketch.js"></script>
+
+</head>
+<body>
+    <img
+    src="https://media.giphy.com/media/26n6WywJyh39n1pBu/giphy.gif"
+    alt="een gif"
+    class="result"
+  />
+  <p class="slug"></p>
+
+  <button class="btn">capture</button>
+</body>
 </html>
