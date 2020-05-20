@@ -35,7 +35,7 @@ const handleBtnClick = () => {
 }
 
 const loadGif = async keyword => {
-    const url = `http://api.giphy.com/v1/gifs/search?q=${keyword}&api_key=${key}`;
+    const url = `https://api.giphy.com/v1/gifs/search?q=${keyword}&api_key=${key}`;
     const response = await fetch(url);
     const data = await response.json();
     return getImage(data.data); 
