@@ -1,10 +1,3 @@
-// Image Classification with MobileNet
-// A Beginner's Guide to Machine Learning with ml5.js
-// The Coding Train / Daniel Shiffman
-// https://youtu.be/D9BoBSkLvFo
-// https://thecodingtrain.com/learning/ml5/1.2-webcam-classification.html
-// https://editor.p5js.org/codingtrain/sketches/JrudwwVD
-
 let mobilenet;
 const key = "7lmLEwC7S2808QIYlb2a3BHcAhRBjGJI"
 let classifier;
@@ -22,6 +15,8 @@ function modelReady() {
 function customModelReady() {
     console.log('Custom Model is ready!!!');
     label = 'model ready';
+    document.querySelector('.loading').style.display = 'none';
+    document.querySelector('canvas').style.display = 'block';
     classifier.classify(gotResults);
 }
     
@@ -42,11 +37,16 @@ const loadGif = async keyword => {
 }
 
 const getImage = results => {
-    const $img = document.querySelector(`img`);
-    const $slug = document.querySelector(`.slug`);
+    const img = document.createElement('img');
+    const $body = document.querySelector(`body`);
+    if ($body.querySelector('.result')){
+      const $img = document.querySelector('.result');
+      $body.removeChild($img)
+    }
     const random = results[Math.floor(Math.random() * results.length)]
-    $img.src = `${random.images.original.url}`;
-    $slug.textContent = random.slug;
+    img.classList.add('result');
+    img.src = `${random.images.original.url}`;
+    $body.insertBefore(img,  $body.firstChild);
 }
 
 
@@ -56,6 +56,7 @@ const getImage = results => {
 
 function videoReady() {
     console.log('Video is ready!!!');
+    
 }
 
 function setup() {
@@ -65,6 +66,7 @@ function setup() {
   background(0);
   mobilenet = ml5.featureExtractor('MobileNet', modelReady);
   classifier = mobilenet.classification(video, videoReady);
+  document.querySelector('canvas').style.display = 'none';
 }
 
 function draw() {
