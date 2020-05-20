@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
 
-	<title>verGIF</title>
+    <title>verGIF</title>
 
-	<!-- Do NOT update p5 libraries breaks the example because of p5.dom API change -->
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>	
-	<script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
-	<script src="sketch.js"></script>
-
-</head>
-<body>
+    <!-- Do NOT update p5 libraries breaks the example because of p5.dom API change -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+  <body>
     <!-- <img
     src="https://media.giphy.com/media/26n6WywJyh39n1pBu/giphy.gif"
     alt="een gif"
     class="result"
   /> -->
 
-  <button class="btn">capture</button>
+    <button class="btn">capture</button>
 
-  <img class="loading" src="assets/verGIF.gif" alt="loading..." title="loading">
-</body>
+    <img
+      class="loading"
+      src="assets/verGIF.gif"
+      alt="loading..."
+      title="loading"
+    />
+
+    <div>
+      <h2 class="instructions">Instructions</h2>
+      <p class="instructions__subtitle">
+        Maak een van onderstaande gezichten in je webcam en druk op Capture.
+        VerGIF zoekt de gif die bij jouw gezicht past!
+      </p>
+      <div class="instruction__container">
+        <img class="instructions__img" src="./assets/Happy.svg" alt="Happy" />
+        <img class="instructions__img" src="./assets/Angry.svg" alt="Angry" />
+        <img class="instructions__img" src="./assets/Sad.svg" alt="Sad" />
+      </div>
+    </div>
+  </body>
 </html>
