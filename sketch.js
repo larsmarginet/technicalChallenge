@@ -7,6 +7,7 @@
 
 let mobilenet;
 const key = "7lmLEwC7S2808QIYlb2a3BHcAhRBjGJI"
+let classifier;
 let video;
 let label = '';
 
@@ -14,13 +15,22 @@ function modelReady() {
     console.log('Model is ready!!!');
     const btn = document.querySelector('.btn');
     btn.addEventListener("click", handleBtnClick);
-    mobilenet.predict(gotResults);
+    classifier.load('model.json', customModelReady);
+    //mobilenet.predict(gotResults);
 }
+
+function customModelReady() {
+    console.log('Custom Model is ready!!!');
+    label = 'model ready';
+    classifier.classify(gotResults);
+}
+    
 
 let captureResult = [];
 
 const handleBtnClick = () => {
-    const keywords = captureResult[0].className.split(',')
+    console.log(captureResult)
+    const keywords = captureResult[0].label.split(',')
     keywords.forEach(keyword => loadGif(keyword))
 }
 
@@ -39,26 +49,22 @@ const getImage = results => {
     $slug.textContent = random.slug;
 }
 
-function gotResults(error, results) {
-  if (error) {
-    console.error(error);
-  } else {
-    captureResult = results
-    label = results[0].className;
-    mobilenet.predict(gotResults);
-  }
-}
 
 // function imageReady() {
 //   image(puffin, 0, 0, width, height);
 // }
+
+function videoReady() {
+    console.log('Video is ready!!!');
+}
 
 function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
   video.hide();
   background(0);
-  mobilenet = ml5.imageClassifier('MobileNet', video, modelReady);
+  mobilenet = ml5.featureExtractor('MobileNet', modelReady);
+  classifier = mobilenet.classification(video, videoReady);
 }
 
 function draw() {
@@ -67,4 +73,15 @@ function draw() {
   fill(255);
   textSize(32);
   text(label, 10, height - 20);
+}
+
+
+function gotResults(error, results) {
+    if (error) {
+      console.error(error);
+    } else {
+      captureResult = results
+      label = results[0].label;
+      classifier.classify(gotResults);
+    }
 }
